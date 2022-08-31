@@ -1,4 +1,6 @@
 import React from 'react'
+import './products.css'
+
 
 const Products = () => {
     const listOfProducts = // 20220816205015

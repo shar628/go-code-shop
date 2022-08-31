@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <div className="product-filter">
             <h1>Jackets</h1>
-            <h2>Welcome to Shaul's Store     </h2>
+            <h2>Welcome to our new store     </h2>
             <div className="sort" >
                 <FilterBy />
                 <SortBy />
