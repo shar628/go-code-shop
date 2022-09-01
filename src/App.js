@@ -20,6 +20,9 @@ function App() {
       console.log("Error getting" + e);
     }
   }
+  useEffect(() => {
+    // console.log(productsData)
+  }, [productsData]);
 
   useEffect(() => {
     getApiProducts();
