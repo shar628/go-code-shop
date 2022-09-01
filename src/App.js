@@ -32,7 +32,7 @@ function App() {
     <div className="App">
       {/* <Loading /> */}
       {loading && <Loading />}
-      <Header productsData={productsData} />
+      <Header products={productsData} />
       <Products productsData={productsData} />
     </div>
   );

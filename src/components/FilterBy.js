@@ -1,7 +1,12 @@
 import React from 'react'
 import './filterBy.css'
 
-const FilterBy = () => {
+const FilterBy = ({ products }) => {
+
+
+    const categories = products.map(p => p.category)
+        .filter((value, index, array) => array.indexOf(value) === index)
+    console.log(categories);
     return (
         <div className="collection-sort">
             <label>Filter by:</label>
