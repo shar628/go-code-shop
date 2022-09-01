@@ -266,8 +266,12 @@ const Products = () => {
     useEffect(() => {
         getApiProducts();
     }, [])
+
+
+
+
     useEffect(() => { setLoading(false) }, [productsData]);
-    const DisplayProducts = ({ title, price, img, category, description }) => {
+    const DisplayProducts = ({ title, price, img, category, description, rating }) => {
         return (
             <div className="product-card">
                 <div className="product-image" >
@@ -276,25 +280,30 @@ const Products = () => {
                 <div className="product-info">
                     <h4>{category} </h4>
                     <h5>{title} </h5>
+                    {/* <h5> {rating} </h5> */}
                     <h6> {price} </h6>
+                    {/* <h6> {rating} </h6> */}
                     <h6>{description} </h6>
                 </div>
             </div>
         )
     }
 
-
-    const productsList = productsData.map((element) => {
-        return <DisplayProducts title={element.title}
+    const productsList = productsData.map((element, index) => {
+        return <DisplayProducts title={element.title} key={index}
             img={element.image} price={element.price}
-            category={element.category} description={element.description} />
+            rating={element.rating}
+            category={element.category} description={element.description}
+        />
     })
+
     if (loading) {
-        <Loading />
+        return <Loading />
     }
     return (
         <div className="products">
             {/* <Loading /> */}
+            {productsList.length === 0 && <Loading />}
             {/* {loading && <Loading />} */}
             {productsList}
         </div>
