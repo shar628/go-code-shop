@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Loading from './Loading';
 import './products.css'
 
 
-const Products = () => {
+const Products = ({ productsData }) => {
     // const listOfProducts = // 20220816205015
     //     // https://fakestoreapi.com/products
 
@@ -249,28 +249,27 @@ const Products = () => {
     //             }
     //         }
     //     ]
-    const [loading, setLoading] = useState(true);
-    const [productsData, setProductData] = useState([])
-    const getApiProducts = async () => {
-        try {
-            const response = await fetch('https://fakestoreapi.com/products')
-            const dataFromResponse = await response.json()
-            setProductData(dataFromResponse);
-            setLoading(false);
-            console.log(dataFromResponse);
-        } catch (e) {
-            console.log("Error getting" + e);
-        }
-    }
+    // const [loading, setLoading] = useState(true);
+    // const [productsData, setProductData] = useState([])
+    // const getApiProducts = async () => {
+    //     try {
+    //         const response = await fetch('https://fakestoreapi.com/products')
+    //         const dataFromResponse = await response.json()
+    //         setProductData(dataFromResponse);
+    //         setLoading(false);
+    //         console.log(dataFromResponse);
+    //     } catch (e) {
+    //         console.log("Error getting" + e);
+    //     }
+    // }
 
-    useEffect(() => {
-        getApiProducts();
-    }, [])
+    // useEffect(() => {
+    //     getApiProducts();
+    // }, [])
+
+    // useEffect(() => { setLoading(false) }, [productsData]);
 
 
-
-
-    useEffect(() => { setLoading(false) }, [productsData]);
     const DisplayProducts = ({ title, price, img, category, description, rating }) => {
         return (
             <div className="product-card">
@@ -297,9 +296,9 @@ const Products = () => {
         />
     })
 
-    if (loading) {
-        return <Loading />
-    }
+    // if (loading) {
+    //     return <Loading />
+    // }
     return (
         <div className="products">
             {/* <Loading /> */}
