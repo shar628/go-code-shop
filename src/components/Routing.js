@@ -7,6 +7,7 @@ import Cart from './Cart';
 import NotFound from './NotFound';
 import Loading from '../components/Loading';
 import MyContext from '../MyContext';
+import Admin from './Admin';
 
 const Routing = () => {
     const [loading, setLoading] = useState(true);
@@ -58,7 +59,7 @@ const Routing = () => {
         const filteredItems = productsData.filter(p => p.category === category);
         setFilteredProducts(filteredItems);
     }
-    const [isAdmin] = useState(false);
+    const [isAdmin] = useState(true);
     return (
         <MyContext.Provider value={{ productsData, filterProductsByCategory, filteredProducts, cart }}  >
             < BrowserRouter>
@@ -71,7 +72,7 @@ const Routing = () => {
                     <Route path='/' element={<App addProductToCart={addProductToCart} />} />
                     <Route path='/about' element={<About />} />
                     <Route path='/cart' element={<Cart />} />
-                    <Route path='/admin' element={<Cart />} />
+                    <Route path='/admin' element={<Admin />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
             </ BrowserRouter>
