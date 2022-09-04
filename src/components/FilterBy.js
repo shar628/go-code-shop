@@ -1,31 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './filterBy.css'
+import MyContext from '../MyContext'
 
 const FilterBy = ({ products }) => {
 
-
-    const categories = products.map(p => p.category)
+    const { productsData, filterProductsByCategory } = useContext(MyContext)
+    // console.log(productsData, filterProductsByCategory);
+    const categories = productsData.map(p => p.category)
         .filter((value, index, array) => array.indexOf(value) === index)
     // console.log(categories);
-    const option = categories.map((cate) => (
-        <option key={cate} value={cate}>{cate}</option>
-    ))
+    // const option = categories.map((cate) => (
+    //     <option key={cate} value={cate}>{cate}</option>
+    // ))
     return (
         <div className="collection-sort">
             <label>Filter by:</label>
-            <select onChange={(e) => console.log(e)}>{option}    </select>
-            {/* <label>Filter by:</label>
-            <select>
-                <option value="/">All Jackets</option>
-                <option value="/">2016</option>
-                <option value="/">jacket</option>
-                <option value="/">Jackets</option>
-                <option value="/">layers</option>
-                <option value="/">Obermeyer</option>
-                <option value="/">Roxy</option>
-                <option value="/">womens</option>
-            </select> */}
-        </div>
+            <select onChange={(e) => filterProductsByCategory(e.target.value)} >
+                <option value={'/'}>all Products</option>
+                {categories && categories.map(cat => <option value={cat} >{cat} </option>)}
+            </select>
+            {/* <select onChange={(e) => console.log(e)}>{option}    </select> */}
+        </div >
     )
 }
 
