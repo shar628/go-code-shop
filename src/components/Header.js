@@ -12,7 +12,7 @@ const Header = ({ products }) => {
 
     return (
         <div className="product-filter">
-            <h1>Welcome to our new store </h1>
+            <h1>Welcome to our big store </h1>
             <div className="sort" >
                 <FilterBy products={products} />
                 <SortBy />
