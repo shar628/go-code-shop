@@ -8,7 +8,8 @@ const Cart = () => {
         <div>
             {/* Cart of our products */}
             {cart.length === 0 && <h2>nothing in cart yet</h2>}
-            {cart.map(item => <div>Title:{item.title}, Amount:{item.amount}   </div>)}
+            {/* {cart.map(item => <div>Title:{item.title}, Amount:{item.amount}   </div>)} */}
+            {cart.map(item => <div>title: {item.title}, amount: {item.amount}</div>)}
         </div>
     )
 }

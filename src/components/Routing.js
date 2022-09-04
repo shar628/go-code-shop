@@ -61,10 +61,8 @@ const Routing = () => {
     const [isAdmin] = useState(false);
     return (
         <MyContext.Provider value={{ productsData, filterProductsByCategory, filteredProducts, cart }}  >
-
             < BrowserRouter>
                 {loading && <Loading />}
-
                 <Link to="/" >Home</Link>
                 <Link to="/about" >About</Link>
                 <Link to="/cart" >Cart</Link>
@@ -76,10 +74,8 @@ const Routing = () => {
                     <Route path='/admin' element={<Cart />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
-
             </ BrowserRouter>
         </MyContext.Provider>
-
     )
 }
 
