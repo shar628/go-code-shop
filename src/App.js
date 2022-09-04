@@ -63,6 +63,7 @@ function App() {
       <div className="App">
         {/* <Loading /> */}
         {loading && <Loading />}
+
         <Header />
         <Products addProductToCart={addProductToCart} />
       </div>

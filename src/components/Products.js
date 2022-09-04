@@ -3,6 +3,7 @@ import Loading from './Loading';
 import './products.css'
 import { useContext } from 'react';
 import MyContext from '../MyContext';
+import { useNavigate } from "react-router-dom";
 
 const Products = ({ addProductToCart }) => {
 
@@ -12,6 +13,10 @@ const Products = ({ addProductToCart }) => {
     // }
 
     const DisplayProducts = ({ title, price, img, category, description, rating, handleAddProductToCart }) => {
+        const navigate = useNavigate();
+        // const navigateToCart = () => {
+        //     navigate('/cart')
+        // }
         return (
             <div className="product-card">
                 <div className="product-image" >
@@ -24,6 +29,8 @@ const Products = ({ addProductToCart }) => {
                     <h6> {price} </h6>
                     {/* <h6> {rating} </h6> */}
                     <button onClick={handleAddProductToCart} >Add to your cart</button>
+                    <button onClick={() => navigate("/cart")}>go to cart</button>
+
                     <h6>{description} </h6>
                 </div>
             </div>
