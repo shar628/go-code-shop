@@ -11,9 +11,10 @@ import Admin from './Admin';
 
 const Routing = () => {
     const [loading, setLoading] = useState(true);
-    const [cart, setCart] = useState([])
     const [productsData, setProductData] = useState([])
     const [filteredProducts, setFilteredProducts] = useState([])
+    const [cart, setCart] = useState([])
+
     const getApiProducts = async () => {
         try {
             const response = await fetch('https://fakestoreapi.com/products')
@@ -35,11 +36,13 @@ const Routing = () => {
 
     useEffect(() => { setLoading(false) }, [productsData]);
 
+    const categories = productsData?.map(p => p.category).filter((value, index, array) => array.indexOf(value) === index)
+
     const addProductToCart = (product) => {
-        const productInCart = cart.findIndex(p => p.id === product.id);
+        const productInCart = cart.findIndex(item => item.id === product.id);
         if (productInCart === -1) {
             const newProductToCart = { ...product, amount: 1 }
-            setCart(prev => [newProductToCart, prev])
+            setCart(prev => [newProductToCart, ...prev])
         } else {
             const newCart = [...cart];
             newCart[productInCart].amount++;
@@ -51,6 +54,10 @@ const Routing = () => {
         console.log(cart);
     }, [cart]);
 
+    useEffect(() => {
+        console.log(productsData)
+    }, [productsData]);
+
     const filterProductsByCategory = (category) => {
         if (category === '/') {
             setFilteredProducts(productsData)
@@ -60,8 +67,9 @@ const Routing = () => {
         setFilteredProducts(filteredItems);
     }
     const [isAdmin] = useState(true);
+
     return (
-        <MyContext.Provider value={{ productsData, filterProductsByCategory, filteredProducts, cart }}  >
+        <MyContext.Provider value={{ productsData, filterProductsByCategory, filteredProducts, cart, categories }}  >
             < BrowserRouter>
                 {loading && <Loading />}
                 <Link to="/" >Home</Link>
@@ -72,7 +80,7 @@ const Routing = () => {
                     <Route path='/' element={<App addProductToCart={addProductToCart} />} />
                     <Route path='/about' element={<About />} />
                     <Route path='/cart' element={<Cart />} />
-                    <Route path='/admin' element={<Admin />} />
+                    <Route path='/admin' element={<Admin setProductData={setProductData} categories={categories} />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
             </ BrowserRouter>

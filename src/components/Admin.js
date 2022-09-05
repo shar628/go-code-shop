@@ -10,7 +10,7 @@ import React, { useState } from 'react'
 import './admin.css';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import axios from 'axios'
+// import axios from 'axios'
 
 const Admin = ({ setProductData, categories }) => {
 
@@ -52,8 +52,10 @@ const Admin = ({ setProductData, categories }) => {
 
 
         const newProduct = { title, description, price, category, image: imageUrl }
-        const productAdded = await axios({ method: 'post', url: 'http://localhost:8002/api/products', data: newProduct });
-        setProductData(prev => [productAdded, ...prev])
+        // const productAdded = await axios({ method: 'post', url: 'http://localhost:8002/api/products', data: newProduct });
+        // setProductData(prev => [productAdded, ...prev])
+        // setProductData(newProduct);
+        setProductData(prev => [newProduct, ...prev]);
 
         setTitle('')
         setDescription('')

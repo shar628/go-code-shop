@@ -9,7 +9,12 @@ const Cart = () => {
             {/* Cart of our products */}
             {cart.length === 0 && <h2>nothing in cart yet</h2>}
             {/* {cart.map(item => <div>Title:{item.title}, Amount:{item.amount}   </div>)} */}
-            {cart.map(item => <div>title: {item.title}, amount: {item.amount}</div>)}
+            {cart.map(item =>
+                <div>
+                    <h2>  title: {item.title}</h2>
+                    <div><img src='{item.image}' alt='product...' /></div>
+                    <h3> amount: {item.amount}</h3>
+                </div>)}
         </div>
     )
 }

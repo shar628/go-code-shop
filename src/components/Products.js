@@ -14,9 +14,7 @@ const Products = ({ addProductToCart }) => {
 
     const DisplayProducts = ({ title, price, img, category, description, rating, handleAddProductToCart }) => {
         const navigate = useNavigate();
-        // const navigateToCart = () => {
-        //     navigate('/cart')
-        // }
+
         return (
             <div className="product-card">
                 <div className="product-image" >
@@ -39,13 +37,14 @@ const Products = ({ addProductToCart }) => {
 
     const customList = filteredProducts.length > 0 ? filteredProducts : productsData
 
-    const productsList = customList.map((element, index) => {
-        return <DisplayProducts title={element.title} key={index}
+    const productsList = customList.map((element, index) => (
+        <DisplayProducts
+            title={element.title} key={index}
             img={element.image} price={element.price}
             rating={element.rating} handleAddProductToCart={() => addProductToCart(element)}
             category={element.category} description={element.description}
         />
-    })
+    ))
 
 
     if (!productsData && !filteredProducts) {
